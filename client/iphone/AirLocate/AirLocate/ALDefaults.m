@@ -1,8 +1,8 @@
 /*
-     File: ALDefaults.m
+ File: ALDefaults.m
  Abstract: Contains default values for the application.
  
-  Version: 1.0
+ Version: 1.0
  
  Disclaimer: IMPORTANT:  This Apple software is supplied to you by Apple
  Inc. ("Apple") in consideration of your agreement to the following
@@ -100,33 +100,36 @@
 
 - (id)init
 {
-    self = [super init];
-    if(self)
-    {
-        // uuidgen should be used to generate UUIDs.
-        _supportedProximityUUIDs = @[[[NSUUID alloc] initWithUUIDString:@""],
-                                      [[NSUUID alloc] initWithUUIDString:@"5A4BCFCE-174E-4BAC-A814-092E77F6B7E5"],
-                                      [[NSUUID alloc] initWithUUIDString:@"74278BDA-B644-4520-8F0C-720EAF059935"]];
-        _defaultPower = @-59;
-    }
-    
-    return self;
+  self = [super init];
+  if(self)
+  {
+    // uuidgen should be used to generate UUIDs.
+    /*
+    _supportedProximityUUIDs = @[[[NSUUID alloc] initWithUUIDString:@"5A4BCFCE-174E-4BAC-A814-092E77F6B7E5"],
+                                 [[NSUUID alloc] initWithUUIDString:@"9EB353A0-69B6-4947-B710-BAE643C8BCA5"],
+                                 [[NSUUID alloc] initWithUUIDString:@"74278BDA-B644-4520-8F0C-720EAF059935"]];
+    */
+    _supportedProximityUUIDs = @[[[NSUUID alloc] initWithUUIDString:@"5A4BCFCE-174E-4BAC-A814-092E77F6B7E5"]];    
+    _defaultPower = @-59;
+  }
+  
+  return self;
 }
 
 + (ALDefaults *)sharedDefaults
 {
-    static id instance = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        instance = [[self alloc] init];
-    });
-    
-    return instance;
+  static id instance = nil;
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+    instance = [[self alloc] init];
+  });
+  
+  return instance;
 }
 
 - (NSUUID *)defaultProximityUUID
 {
-    return [_supportedProximityUUIDs objectAtIndex:0];
+  return [_supportedProximityUUIDs objectAtIndex:0];
 }
 
 @end

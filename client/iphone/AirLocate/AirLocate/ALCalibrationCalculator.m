@@ -176,7 +176,7 @@ static const NSTimeInterval ALCalibrationDwell = 20.0f;
         {
             // Send back an error if calibration is already in progress.
             NSDictionary *userInfo = @{ NSLocalizedDescriptionKey :  @"Calibration is already in progress" };
-            NSError *error = [NSError errorWithDomain:@"com.apple.AirLocate" code:4 userInfo:userInfo];
+            NSError *error = [NSError errorWithDomain:@"com.proximitywiz.AirLocate" code:4 userInfo:userInfo];
             dispatch_async(dispatch_get_main_queue(), ^{
                 _completionHandler(0, error);
             });
@@ -214,7 +214,7 @@ static const NSTimeInterval ALCalibrationDwell = 20.0f;
                 if(!_isCalibrating)
                 {
                     NSDictionary *userInfo = @{ NSLocalizedDescriptionKey :  @"Calibration was cancelled" };
-                    error = [NSError errorWithDomain:@"com.apple.AirLocate" code:2 userInfo:userInfo];
+                    error = [NSError errorWithDomain:@"com.proximitywiz.AirLocate" code:2 userInfo:userInfo];
                 }
                 else
                 {
@@ -223,7 +223,7 @@ static const NSTimeInterval ALCalibrationDwell = 20.0f;
                         if(beacons.count > 1)
                         {
                             NSDictionary *userInfo = @{ NSLocalizedDescriptionKey :  @"More than one beacon of the specified type was found" };
-                            error = [NSError errorWithDomain:@"com.apple.AirLocate" code:1 userInfo:userInfo];
+                            error = [NSError errorWithDomain:@"com.proximitywiz.AirLocate" code:1 userInfo:userInfo];
                             *stop = YES;
                         }
                         else
@@ -235,7 +235,7 @@ static const NSTimeInterval ALCalibrationDwell = 20.0f;
                     if(allBeacons.count <= 0)
                     {
                         NSDictionary *userInfo = @{ NSLocalizedDescriptionKey :  @"No beacon of the specified type was found" };
-                        error = [NSError errorWithDomain:@"com.apple.AirLocate" code:3 userInfo:userInfo];
+                        error = [NSError errorWithDomain:@"com.proximitywiz.AirLocate" code:3 userInfo:userInfo];
                     }
                     else
                     {

@@ -1,8 +1,8 @@
 /*
-     File: ALMonitoringViewController.m
+ File: ALMonitoringViewController.m
  Abstract: View controller that illustrates how to start and stop monitoring for a beacon region.
  
-  Version: 1.0
+ Version: 1.0
  
  Disclaimer: IMPORTANT:  This Apple software is supplied to you by Apple
  Inc. ("Apple") in consideration of your agreement to the following
@@ -105,350 +105,353 @@
 
 @implementation ALMonitoringViewController
 {
-    CLLocationManager *_locationManager;
-    
-    BOOL _enabled;
-    NSUUID *_uuid;
-    NSNumber *_major;
-    NSNumber *_minor;
-    BOOL _notifyOnEntry;
-    BOOL _notifyOnExit;
-    BOOL _notifyOnDisplay;
-    
-    UISwitch *_enabledSwitch;
-    
-    UITextField *_uuidTextField;
-    UIPickerView *_uuidPicker;
-    
-    NSNumberFormatter *_numberFormatter;
-    UITextField *_majorTextField;
-    UITextField *_minorTextField;
-    
-    UISwitch *_notifyOnEntrySwitch;
-    UISwitch *_notifyOnExitSwitch;
-    UISwitch *_notifyOnDisplaySwitch;
-    
-    UIBarButtonItem *_doneButton;
-    UIBarButtonItem *_saveButton;
+  CLLocationManager *_locationManager;
+  
+  BOOL _enabled;
+  NSUUID *_uuid;
+  NSNumber *_major;
+  NSNumber *_minor;
+  BOOL _notifyOnEntry;
+  BOOL _notifyOnExit;
+  BOOL _notifyOnDisplay;
+  
+  UISwitch *_enabledSwitch;
+  
+  UITextField *_uuidTextField;
+  UIPickerView *_uuidPicker;
+  
+  NSNumberFormatter *_numberFormatter;
+  UITextField *_majorTextField;
+  UITextField *_minorTextField;
+  
+  UISwitch *_notifyOnEntrySwitch;
+  UISwitch *_notifyOnExitSwitch;
+  UISwitch *_notifyOnDisplaySwitch;
+  
+  UIBarButtonItem *_doneButton;
+  UIBarButtonItem *_saveButton;
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
-    self = [super initWithStyle:style];
-    if (self) {
-        // This location manager will be used to demonstrate how to start and stop monitoring a beacon region.
-        _locationManager = [[CLLocationManager alloc] init];
-        _locationManager.delegate = self;
-        
-        _numberFormatter = [[NSNumberFormatter alloc] init];
-        _numberFormatter.numberStyle = NSNumberFormatterDecimalStyle;
-    }
+  self = [super initWithStyle:style];
+  if (self) {
+    // This location manager will be used to demonstrate how to start and stop monitoring a beacon region.
+    _locationManager = [[CLLocationManager alloc] init];
+    _locationManager.delegate = self;
     
-    return self;
+    _numberFormatter = [[NSNumberFormatter alloc] init];
+    _numberFormatter.numberStyle = NSNumberFormatterDecimalStyle;
+  }
+  
+  return self;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    CLBeaconRegion *region = [[CLBeaconRegion alloc] initWithProximityUUID:[NSUUID UUID] identifier:@"com.apple.AirLocate"];
-    region = [_locationManager.monitoredRegions member:region];
-    if(region)
-    {
-        _enabled = YES;
-        _uuid = region.proximityUUID;
-        _major = region.major;
-        _minor = region.minor;
-        _notifyOnEntry = region.notifyOnEntry;
-        _notifyOnExit = region.notifyOnExit;
-        _notifyOnDisplay = region.notifyEntryStateOnDisplay;
-    }
-    else
-    {
-        // Default settings.
-        _enabled = NO;
-        _uuid = [ALDefaults sharedDefaults].defaultProximityUUID;
-        _major = _minor = nil;
-        _notifyOnEntry = _notifyOnExit = YES;
-        _notifyOnDisplay = NO;
-    }
-    
-    _enabledSwitch.on = _enabled;
-    _notifyOnEntrySwitch.on = _notifyOnEntry;
-    _notifyOnExitSwitch.on = _notifyOnExit;
-    _notifyOnDisplaySwitch.on = _notifyOnDisplay;
+  CLBeaconRegion *region = [[CLBeaconRegion alloc] initWithProximityUUID:[NSUUID UUID] identifier:@"com.proximitywiz.AirLocate"];
+  region = [_locationManager.monitoredRegions member:region];
+  if(region)
+  {
+    _enabled = YES;
+    _uuid = region.proximityUUID;
+    _major = region.major;
+    _minor = region.minor;
+    _notifyOnEntry = region.notifyOnEntry;
+    _notifyOnExit = region.notifyOnExit;
+    _notifyOnDisplay = region.notifyEntryStateOnDisplay;
+  }
+  else
+  {
+    // Default settings.
+    _enabled = NO;
+    _uuid = [ALDefaults sharedDefaults].defaultProximityUUID;
+    _major = _minor = nil;
+    _notifyOnEntry = _notifyOnExit = YES;
+    _notifyOnDisplay = NO;
+  }
+  
+  _enabledSwitch.on = _enabled;
+  _notifyOnEntrySwitch.on = _notifyOnEntry;
+  _notifyOnExitSwitch.on = _notifyOnExit;
+  _notifyOnDisplaySwitch.on = _notifyOnDisplay;
 }
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-    
-    self.title = @"Monitor";
-    
-    _enabledSwitch = [[UISwitch alloc] initWithFrame:CGRectZero];
-    [_enabledSwitch addTarget:self action:@selector(monitoringChanged:) forControlEvents:UIControlEventValueChanged];
-    
-    _uuidPicker = [[UIPickerView alloc] init];
-    _uuidPicker.delegate = self;
-    _uuidPicker.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    _uuidPicker.showsSelectionIndicator = YES;
-    
-    _uuidTextField = [[UITextField alloc] initWithFrame:CGRectMake(90.0f, 10.0f, 205.0f, 30.0f)];
-    _uuidTextField.clearsOnBeginEditing = NO;
-    _uuidTextField.textAlignment = NSTextAlignmentRight;
-    _uuidTextField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    _uuidTextField.inputView = _uuidPicker;
-    _uuidTextField.delegate = self;
-    
-    _majorTextField = [[UITextField alloc] initWithFrame:CGRectMake(110.0f, 10.0f, 185.0f, 30.0f)];
-    _majorTextField.clearsOnBeginEditing = NO;
-    _majorTextField.textAlignment = NSTextAlignmentRight;
-    _majorTextField.keyboardType = UIKeyboardTypeNumberPad;
-    _majorTextField.returnKeyType = UIReturnKeyDone;
-    _majorTextField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    _majorTextField.delegate = self;
-    
-    _minorTextField = [[UITextField alloc] initWithFrame:CGRectMake(110.0f, 10.0f, 185.0f, 30.0f)];
-    _minorTextField.clearsOnBeginEditing = NO;
-    _minorTextField.textAlignment = NSTextAlignmentRight;
-    _minorTextField.keyboardType = UIKeyboardTypeNumberPad;
-    _minorTextField.returnKeyType = UIReturnKeyDone;
-    _minorTextField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    _minorTextField.delegate = self;
-    
-    _notifyOnEntrySwitch = [[UISwitch alloc] initWithFrame:CGRectZero];
-    [_notifyOnEntrySwitch addTarget:self action:@selector(monitoringChanged:) forControlEvents:UIControlEventValueChanged];
-    
-    _notifyOnExitSwitch = [[UISwitch alloc] initWithFrame:CGRectZero];
-    [_notifyOnExitSwitch addTarget:self action:@selector(monitoringChanged:) forControlEvents:UIControlEventValueChanged];
-    
-    _notifyOnDisplaySwitch = [[UISwitch alloc] initWithFrame:CGRectZero];
-    [_notifyOnDisplaySwitch addTarget:self action:@selector(monitoringChanged:) forControlEvents:UIControlEventValueChanged];
-    
-    _doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(monitoringChanged:)];
-    _saveButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(monitoringChanged:)];
-    self.navigationItem.rightBarButtonItem = _saveButton;
+  [super viewDidLoad];
+  
+  self.title = @"Monitor";
+  
+  _enabledSwitch = [[UISwitch alloc] initWithFrame:CGRectZero];
+  [_enabledSwitch addTarget:self action:@selector(monitoringChanged:) forControlEvents:UIControlEventValueChanged];
+  
+  _uuidPicker = [[UIPickerView alloc] init];
+  _uuidPicker.delegate = self;
+  _uuidPicker.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+  _uuidPicker.showsSelectionIndicator = YES;
+  
+  _uuidTextField = [[UITextField alloc] initWithFrame:CGRectMake(90.0f, 10.0f, 205.0f, 30.0f)];
+  _uuidTextField.clearsOnBeginEditing = NO;
+  _uuidTextField.textAlignment = NSTextAlignmentRight;
+  _uuidTextField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+  _uuidTextField.inputView = _uuidPicker;
+  _uuidTextField.delegate = self;
+  
+  _majorTextField = [[UITextField alloc] initWithFrame:CGRectMake(110.0f, 10.0f, 185.0f, 30.0f)];
+  _majorTextField.clearsOnBeginEditing = NO;
+  _majorTextField.textAlignment = NSTextAlignmentRight;
+  _majorTextField.keyboardType = UIKeyboardTypeNumberPad;
+  _majorTextField.returnKeyType = UIReturnKeyDone;
+  _majorTextField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+  _majorTextField.delegate = self;
+  
+  _minorTextField = [[UITextField alloc] initWithFrame:CGRectMake(110.0f, 10.0f, 185.0f, 30.0f)];
+  _minorTextField.clearsOnBeginEditing = NO;
+  _minorTextField.textAlignment = NSTextAlignmentRight;
+  _minorTextField.keyboardType = UIKeyboardTypeNumberPad;
+  _minorTextField.returnKeyType = UIReturnKeyDone;
+  _minorTextField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+  _minorTextField.delegate = self;
+  
+  _notifyOnEntrySwitch = [[UISwitch alloc] initWithFrame:CGRectZero];
+  [_notifyOnEntrySwitch addTarget:self action:@selector(monitoringChanged:) forControlEvents:UIControlEventValueChanged];
+  
+  _notifyOnExitSwitch = [[UISwitch alloc] initWithFrame:CGRectZero];
+  [_notifyOnExitSwitch addTarget:self action:@selector(monitoringChanged:) forControlEvents:UIControlEventValueChanged];
+  
+  _notifyOnDisplaySwitch = [[UISwitch alloc] initWithFrame:CGRectZero];
+  [_notifyOnDisplaySwitch addTarget:self action:@selector(monitoringChanged:) forControlEvents:UIControlEventValueChanged];
+  
+  _doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(monitoringChanged:)];
+  _saveButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(monitoringChanged:)];
+  self.navigationItem.rightBarButtonItem = _saveButton;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+  return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 7;
+  return 7;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return @"Region Monitoring";
+  return @"Region Monitoring";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *identifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+  static NSString *identifier = @"Cell";
+  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
 	if (cell == nil)
 	{
 		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:identifier];
 		cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.accessoryType = UITableViewCellAccessoryNone;
+    cell.accessoryType = UITableViewCellAccessoryNone;
 	}
-    
-    switch(indexPath.row)
+  
+  switch(indexPath.row)
+  {
+    case 0:
     {
-        case 0:
-        {
-            // Enabled
-            cell.textLabel.text = @"Enabled";
-            cell.accessoryView = _enabledSwitch;
-            break;
-        }
-            
-        case 1:
-        {
-            // Proximity UUID            
-            cell.textLabel.text = @"UUID";
-            _uuidTextField.text = [_uuid UUIDString];
-            [cell.contentView addSubview:_uuidTextField];
-            break;
-        }
-            
-        case 2:
-        {
-            // Major
-            cell.textLabel.text = @"Major";
-            _majorTextField.text = [_major stringValue];
-            [cell.contentView addSubview:_majorTextField];
-            break;
-        }
-            
-        case 3:
-        {
-            // Minor
-            cell.textLabel.text = @"Minor";
-            _minorTextField.text = [_minor stringValue];
-            [cell.contentView addSubview:_minorTextField];
-            break;
-        }
-            
-        case 4:
-        {
-            // Notify on entry
-            cell.textLabel.text = @"Notify Entry";
-            cell.accessoryView = _notifyOnEntrySwitch;
-            break;
-        }
-            
-        case 5:
-        {
-            // Notify on exit
-            cell.textLabel.text = @"Notify Exit";
-            cell.accessoryView = _notifyOnExitSwitch;
-            break;
-        }
-            
-        case 6:
-        {
-            // Notify entry on display.
-            cell.textLabel.text = @"Notify Entry Display";
-            cell.accessoryView = _notifyOnDisplaySwitch;
-            break;
-        }
-            
-        default:
-        {
-            break;
-        }
+      // Enabled
+      cell.textLabel.text = @"Enabled";
+      cell.accessoryView = _enabledSwitch;
+      break;
     }
-    
-    return cell;
+      
+    case 1:
+    {
+      // Proximity UUID
+      cell.textLabel.text = @"UUID";
+      _uuidTextField.text = [_uuid UUIDString];
+      [cell.contentView addSubview:_uuidTextField];
+      break;
+    }
+      
+    case 2:
+    {
+      // Major
+      cell.textLabel.text = @"Major";
+      _majorTextField.text = [_major stringValue];
+      [cell.contentView addSubview:_majorTextField];
+      break;
+    }
+      
+    case 3:
+    {
+      // Minor
+      cell.textLabel.text = @"Minor";
+      _minorTextField.text = [_minor stringValue];
+      [cell.contentView addSubview:_minorTextField];
+      break;
+    }
+      
+    case 4:
+    {
+      // Notify on entry
+      cell.textLabel.text = @"Notify Entry";
+      cell.accessoryView = _notifyOnEntrySwitch;
+      break;
+    }
+      
+    case 5:
+    {
+      // Notify on exit
+      cell.textLabel.text = @"Notify Exit";
+      cell.accessoryView = _notifyOnExitSwitch;
+      break;
+    }
+      
+    case 6:
+    {
+      // Notify entry on display.
+      cell.textLabel.text = @"Notify Entry Display";
+      cell.accessoryView = _notifyOnDisplaySwitch;
+      break;
+    }
+      
+    default:
+    {
+      break;
+    }
+  }
+  
+  return cell;
 }
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
-    return 1;
+  return 1;
 }
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    if(pickerView == _uuidPicker)
-    {
-        return [ALDefaults sharedDefaults].supportedProximityUUIDs.count;
-    }
-    
-    return 0;
+  if(pickerView == _uuidPicker)
+  {
+    return [ALDefaults sharedDefaults].supportedProximityUUIDs.count;
+  }
+  
+  return 0;
 }
 
 - (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
 {
-    if(pickerView == _uuidPicker)
+  if(pickerView == _uuidPicker)
+  {
+    UILabel *label = (UILabel *)view;
+    if(!label)
     {
-        UILabel *label = (UILabel *)view;
-        if(!label)
-        {
-            label = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.view.frame.size.width, 60.0f)];
-            label.backgroundColor = [UIColor clearColor];
-            label.textAlignment = NSTextAlignmentCenter;
-            label.adjustsFontSizeToFitWidth = YES;
-        }
-        
-        label.text = [[[ALDefaults sharedDefaults].supportedProximityUUIDs objectAtIndex:row] UUIDString];
-        
-        return label;
+      label = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.view.frame.size.width, 60.0f)];
+      label.backgroundColor = [UIColor clearColor];
+      label.textAlignment = NSTextAlignmentCenter;
+      label.adjustsFontSizeToFitWidth = YES;
     }
     
-    return nil;
+    label.text = [[[ALDefaults sharedDefaults].supportedProximityUUIDs objectAtIndex:row] UUIDString];
+    
+    return label;
+  }
+  
+  return nil;
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    if(pickerView == _uuidPicker)
-    {
-        _uuid = [[ALDefaults sharedDefaults].supportedProximityUUIDs objectAtIndex:row];
-        _uuidTextField.text = [_uuid UUIDString];
-    }
+  if(pickerView == _uuidPicker)
+  {
+    _uuid = [[ALDefaults sharedDefaults].supportedProximityUUIDs objectAtIndex:row];
+    _uuidTextField.text = [_uuid UUIDString];
+  }
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    self.navigationItem.rightBarButtonItem = _doneButton;
+  self.navigationItem.rightBarButtonItem = _doneButton;
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
-{    
-    if(textField == _majorTextField)
-    {
-        _major = [_numberFormatter numberFromString:textField.text];
-    }
-    else if(textField == _minorTextField)
-    {
-        _minor = [_numberFormatter numberFromString:textField.text];
-    }
-    
-    self.navigationItem.rightBarButtonItem = _saveButton;
+{
+  if(textField == _majorTextField)
+  {
+    _major = [_numberFormatter numberFromString:textField.text];
+  }
+  else if(textField == _minorTextField)
+  {
+    _minor = [_numberFormatter numberFromString:textField.text];
+  }
+  
+  self.navigationItem.rightBarButtonItem = _saveButton;
 }
 
 - (void)monitoringChanged:(id)sender
 {
-    if(sender == _enabledSwitch)
+  if(sender == _enabledSwitch)
+  {
+    _enabled = _enabledSwitch.on;
+  }
+  else if(sender == _notifyOnEntrySwitch)
+  {
+    _notifyOnEntry = _notifyOnEntrySwitch.on;
+  }
+  else if(sender == _notifyOnExitSwitch)
+  {
+    _notifyOnExit = _notifyOnExitSwitch.on;
+  }
+  else if(sender == _notifyOnDisplaySwitch)
+  {
+    _notifyOnDisplay = _notifyOnDisplaySwitch.on;
+  }
+  else if(sender == _doneButton)
+  {
+    [_uuidTextField resignFirstResponder];
+    [_majorTextField resignFirstResponder];
+    [_minorTextField resignFirstResponder];
+    
+    [self.tableView reloadData];
+  }
+  else if(sender == _saveButton)
+  {
+    if(_enabled)
     {
-        _enabled = _enabledSwitch.on;
-    }
-    else if(sender == _notifyOnEntrySwitch)
-    {
-        _notifyOnEntry = _notifyOnEntrySwitch.on;
-    }
-    else if(sender == _notifyOnExitSwitch)
-    {
-        _notifyOnExit = _notifyOnExitSwitch.on;
-    }
-    else if(sender == _notifyOnDisplaySwitch)
-    {
-        _notifyOnDisplay = _notifyOnDisplaySwitch.on;
-    }
-    else if(sender == _doneButton)
-    {
-        [_uuidTextField resignFirstResponder];
-        [_majorTextField resignFirstResponder];
-        [_minorTextField resignFirstResponder];
+      CLBeaconRegion *region = nil;
+      if(_uuid && _major && _minor)
+      {
+        region = [[CLBeaconRegion alloc] initWithProximityUUID:_uuid major:[_major shortValue] minor:[_minor shortValue] identifier:@"com.proximitywiz.AirLocate"];
+      }
+      else if(_uuid && _major)
+      {
+        region = [[CLBeaconRegion alloc] initWithProximityUUID:_uuid major:[_major shortValue]  identifier:@"com.proximitywiz.AirLocate"];
+      }
+      else if(_uuid)
+      {
+        region = [[CLBeaconRegion alloc] initWithProximityUUID:_uuid identifier:@"com.proximitywiz.AirLocate"];
+      }
+      
+      if(region)
+      {
         
-        [self.tableView reloadData];
+        region.notifyOnEntry = _notifyOnEntry;
+        region.notifyOnExit = _notifyOnExit;
+        region.notifyEntryStateOnDisplay = _notifyOnDisplay;
+        for (CLRegion *monitoredRegion in _locationManager.monitoredRegions) {
+          [_locationManager stopMonitoringForRegion:monitoredRegion];
+        }
+        [_locationManager startMonitoringForRegion:region];
+      }
     }
-    else if(sender == _saveButton)
+    else
     {
-        if(_enabled)
-        {
-            CLBeaconRegion *region = nil;
-            if(_uuid && _major && _minor)
-            {
-                region = [[CLBeaconRegion alloc] initWithProximityUUID:_uuid major:[_major shortValue] minor:[_minor shortValue] identifier:@"com.apple.AirLocate"];
-            }
-            else if(_uuid && _major)
-            {
-                region = [[CLBeaconRegion alloc] initWithProximityUUID:_uuid major:[_major shortValue]  identifier:@"com.apple.AirLocate"];
-            }
-            else if(_uuid)
-            {
-                region = [[CLBeaconRegion alloc] initWithProximityUUID:_uuid identifier:@"com.apple.AirLocate"];
-            }
-            
-            if(region)
-            {
-                region.notifyOnEntry = _notifyOnEntry;
-                region.notifyOnExit = _notifyOnExit;
-                region.notifyEntryStateOnDisplay = _notifyOnDisplay;
-                
-                [_locationManager startMonitoringForRegion:region];
-            }
-        }
-        else
-        {
-            CLBeaconRegion *region = [[CLBeaconRegion alloc] initWithProximityUUID:[NSUUID UUID] identifier:@"com.apple.AirLocate"];
-            [_locationManager stopMonitoringForRegion:region];
-        }
-        
-        [self.navigationController popViewControllerAnimated:YES];
+      CLBeaconRegion *region = [[CLBeaconRegion alloc] initWithProximityUUID:[NSUUID UUID] identifier:@"com.proximitywiz.AirLocate"];
+      [_locationManager stopMonitoringForRegion:region];
     }
+    
+    [self.navigationController popViewControllerAnimated:YES];
+  }
 }
 
 @end

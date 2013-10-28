@@ -323,15 +323,15 @@
         CLBeaconRegion *region = nil;
         if(beacon.proximityUUID && beacon.major && beacon.minor)
         {
-            region = [[CLBeaconRegion alloc] initWithProximityUUID:beacon.proximityUUID major:[beacon.major shortValue] minor:[beacon.minor shortValue] identifier:@"com.apple.AirLocate"];
+            region = [[CLBeaconRegion alloc] initWithProximityUUID:beacon.proximityUUID major:[beacon.major shortValue] minor:[beacon.minor shortValue] identifier:@"com.proximitywiz.AirLocate"];
         }
         else if(beacon.proximityUUID && beacon.major)
         {
-            region = [[CLBeaconRegion alloc] initWithProximityUUID:beacon.proximityUUID major:[beacon.major shortValue] identifier:@"com.apple.AirLocate"];
+            region = [[CLBeaconRegion alloc] initWithProximityUUID:beacon.proximityUUID major:[beacon.major shortValue] identifier:@"com.proximitywiz.AirLocate"];
         }
         else if(beacon.proximityUUID)
         {
-            region = [[CLBeaconRegion alloc] initWithProximityUUID:beacon.proximityUUID identifier:@"com.apple.AirLocate"];
+            region = [[CLBeaconRegion alloc] initWithProximityUUID:beacon.proximityUUID identifier:@"com.proximitywiz.AirLocate"];
         }
         
         if(region)

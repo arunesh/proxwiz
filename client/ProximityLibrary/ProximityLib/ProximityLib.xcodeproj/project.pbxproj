@@ -1,0 +1,440 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C6A48C4A180B582900C80360 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6A48C49180B582900C80360 /* Foundation.framework */; };
+		C6A48C4F180B582900C80360 /* ProximityLib.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = C6A48C4E180B582900C80360 /* ProximityLib.h */; };
+		C6A48C51180B582900C80360 /* ProximityLib.m in Sources */ = {isa = PBXBuildFile; fileRef = C6A48C50180B582900C80360 /* ProximityLib.m */; };
+		C6A48C58180B582900C80360 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6A48C57180B582900C80360 /* XCTest.framework */; };
+		C6A48C59180B582900C80360 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6A48C49180B582900C80360 /* Foundation.framework */; };
+		C6A48C5B180B582900C80360 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6A48C5A180B582900C80360 /* UIKit.framework */; };
+		C6A48C5E180B582900C80360 /* libProximityLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C6A48C46180B582900C80360 /* libProximityLib.a */; };
+		C6A48C64180B582900C80360 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C6A48C62180B582900C80360 /* InfoPlist.strings */; };
+		C6A48C66180B582900C80360 /* ProximityLibTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C6A48C65180B582900C80360 /* ProximityLibTests.m */; };
+		C6A48C71180B974300C80360 /* PXBaseBeaconGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = C6A48C70180B974300C80360 /* PXBaseBeaconGenerator.m */; };
+		C6A48C72180B974300C80360 /* PXBaseBeaconGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = C6A48C70180B974300C80360 /* PXBaseBeaconGenerator.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C6A48C5C180B582900C80360 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C6A48C3E180B582900C80360 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C6A48C45180B582900C80360;
+			remoteInfo = ProximityLib;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C6A48C44180B582900C80360 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				C6A48C4F180B582900C80360 /* ProximityLib.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		C6A48C46180B582900C80360 /* libProximityLib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libProximityLib.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		C6A48C49180B582900C80360 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		C6A48C4D180B582900C80360 /* ProximityLib-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ProximityLib-Prefix.pch"; sourceTree = "<group>"; };
+		C6A48C4E180B582900C80360 /* ProximityLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProximityLib.h; sourceTree = "<group>"; };
+		C6A48C50180B582900C80360 /* ProximityLib.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProximityLib.m; sourceTree = "<group>"; };
+		C6A48C56180B582900C80360 /* ProximityLibTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProximityLibTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C6A48C57180B582900C80360 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		C6A48C5A180B582900C80360 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		C6A48C61180B582900C80360 /* ProximityLibTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ProximityLibTests-Info.plist"; sourceTree = "<group>"; };
+		C6A48C63180B582900C80360 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C6A48C65180B582900C80360 /* ProximityLibTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProximityLibTests.m; sourceTree = "<group>"; };
+		C6A48C6F180B974300C80360 /* PXBaseBeaconGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXBaseBeaconGenerator.h; sourceTree = "<group>"; };
+		C6A48C70180B974300C80360 /* PXBaseBeaconGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXBaseBeaconGenerator.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C6A48C43180B582900C80360 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C6A48C4A180B582900C80360 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C6A48C53180B582900C80360 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C6A48C58180B582900C80360 /* XCTest.framework in Frameworks */,
+				C6A48C5B180B582900C80360 /* UIKit.framework in Frameworks */,
+				C6A48C59180B582900C80360 /* Foundation.framework in Frameworks */,
+				C6A48C5E180B582900C80360 /* libProximityLib.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C6A48C3D180B582900C80360 = {
+			isa = PBXGroup;
+			children = (
+				C6A48CBA181348D000C80360 /* ProximityBasic */,
+				C6A48C4B180B582900C80360 /* ProximityLib */,
+				C6A48C5F180B582900C80360 /* ProximityLibTests */,
+				C6A48C48180B582900C80360 /* Frameworks */,
+				C6A48C47180B582900C80360 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C6A48C47180B582900C80360 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C6A48C46180B582900C80360 /* libProximityLib.a */,
+				C6A48C56180B582900C80360 /* ProximityLibTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C6A48C48180B582900C80360 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C6A48C49180B582900C80360 /* Foundation.framework */,
+				C6A48C57180B582900C80360 /* XCTest.framework */,
+				C6A48C5A180B582900C80360 /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C6A48C4B180B582900C80360 /* ProximityLib */ = {
+			isa = PBXGroup;
+			children = (
+				C6A48C4E180B582900C80360 /* ProximityLib.h */,
+				C6A48C50180B582900C80360 /* ProximityLib.m */,
+				C6A48C6F180B974300C80360 /* PXBaseBeaconGenerator.h */,
+				C6A48C70180B974300C80360 /* PXBaseBeaconGenerator.m */,
+				C6A48C4C180B582900C80360 /* Supporting Files */,
+			);
+			path = ProximityLib;
+			sourceTree = "<group>";
+		};
+		C6A48C4C180B582900C80360 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C6A48C4D180B582900C80360 /* ProximityLib-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C6A48C5F180B582900C80360 /* ProximityLibTests */ = {
+			isa = PBXGroup;
+			children = (
+				C6A48C65180B582900C80360 /* ProximityLibTests.m */,
+				C6A48C60180B582900C80360 /* Supporting Files */,
+			);
+			path = ProximityLibTests;
+			sourceTree = "<group>";
+		};
+		C6A48C60180B582900C80360 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C6A48C61180B582900C80360 /* ProximityLibTests-Info.plist */,
+				C6A48C62180B582900C80360 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C6A48CBA181348D000C80360 /* ProximityBasic */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = ProximityBasic;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C6A48C45180B582900C80360 /* ProximityLib */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C6A48C69180B582900C80360 /* Build configuration list for PBXNativeTarget "ProximityLib" */;
+			buildPhases = (
+				C6A48C42180B582900C80360 /* Sources */,
+				C6A48C43180B582900C80360 /* Frameworks */,
+				C6A48C44180B582900C80360 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ProximityLib;
+			productName = ProximityLib;
+			productReference = C6A48C46180B582900C80360 /* libProximityLib.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		C6A48C55180B582900C80360 /* ProximityLibTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C6A48C6C180B582900C80360 /* Build configuration list for PBXNativeTarget "ProximityLibTests" */;
+			buildPhases = (
+				C6A48C52180B582900C80360 /* Sources */,
+				C6A48C53180B582900C80360 /* Frameworks */,
+				C6A48C54180B582900C80360 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C6A48C5D180B582900C80360 /* PBXTargetDependency */,
+			);
+			name = ProximityLibTests;
+			productName = ProximityLibTests;
+			productReference = C6A48C56180B582900C80360 /* ProximityLibTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C6A48C3E180B582900C80360 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = ProximityWiz;
+			};
+			buildConfigurationList = C6A48C41180B582900C80360 /* Build configuration list for PBXProject "ProximityLib" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = C6A48C3D180B582900C80360;
+			productRefGroup = C6A48C47180B582900C80360 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C6A48C45180B582900C80360 /* ProximityLib */,
+				C6A48C55180B582900C80360 /* ProximityLibTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C6A48C54180B582900C80360 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C6A48C64180B582900C80360 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C6A48C42180B582900C80360 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C6A48C71180B974300C80360 /* PXBaseBeaconGenerator.m in Sources */,
+				C6A48C51180B582900C80360 /* ProximityLib.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C6A48C52180B582900C80360 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C6A48C72180B974300C80360 /* PXBaseBeaconGenerator.m in Sources */,
+				C6A48C66180B582900C80360 /* ProximityLibTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C6A48C5D180B582900C80360 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C6A48C45180B582900C80360 /* ProximityLib */;
+			targetProxy = C6A48C5C180B582900C80360 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C6A48C62180B582900C80360 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C6A48C63180B582900C80360 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C6A48C67180B582900C80360 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		C6A48C68180B582900C80360 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C6A48C6A180B582900C80360 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/ProximityLib.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ProximityLib/ProximityLib-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		C6A48C6B180B582900C80360 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/ProximityLib.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ProximityLib/ProximityLib-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		C6A48C6D180B582900C80360 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ProximityLib/ProximityLib-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "ProximityLibTests/ProximityLibTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		C6A48C6E180B582900C80360 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ProximityLib/ProximityLib-Prefix.pch";
+				INFOPLIST_FILE = "ProximityLibTests/ProximityLibTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C6A48C41180B582900C80360 /* Build configuration list for PBXProject "ProximityLib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C6A48C67180B582900C80360 /* Debug */,
+				C6A48C68180B582900C80360 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C6A48C69180B582900C80360 /* Build configuration list for PBXNativeTarget "ProximityLib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C6A48C6A180B582900C80360 /* Debug */,
+				C6A48C6B180B582900C80360 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		C6A48C6C180B582900C80360 /* Build configuration list for PBXNativeTarget "ProximityLibTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C6A48C6D180B582900C80360 /* Debug */,
+				C6A48C6E180B582900C80360 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C6A48C3E180B582900C80360 /* Project object */;
+}

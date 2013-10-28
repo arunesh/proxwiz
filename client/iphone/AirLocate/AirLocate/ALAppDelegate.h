@@ -96,8 +96,9 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
+#import <CoreBluetooth/CoreBluetooth.h>
 
-@interface ALAppDelegate : UIResponder <UIApplicationDelegate, CLLocationManagerDelegate>
+@interface ALAppDelegate : UIResponder <UIApplicationDelegate, CLLocationManagerDelegate, CBPeripheralManagerDelegate, CBCentralManagerDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 

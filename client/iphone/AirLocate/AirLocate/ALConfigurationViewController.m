@@ -108,7 +108,8 @@
 @implementation ALConfigurationViewController
 {
     CBPeripheralManager *_peripheralManager;
-    
+    //CLLocationManager *_locationManager;
+
     BOOL _enabled;
     NSUUID *_uuid;
     NSNumber *_major;
@@ -134,6 +135,9 @@
 	self = [super initWithStyle:style];
 	if(self)
 	{
+        // This location manager will be used to notify the user of region state transitions.
+        //_locationManager = [[CLLocationManager alloc] init];
+        //_locationManager.delegate = self;
         _peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
         _uuid = [ALDefaults sharedDefaults].defaultProximityUUID;
         _power = [ALDefaults sharedDefaults].defaultPower;
@@ -386,17 +390,17 @@
             NSDictionary *peripheralData = nil;
             if(_uuid && _major && _minor)
             {
-                CLBeaconRegion *region = [[CLBeaconRegion alloc] initWithProximityUUID:_uuid major:[_major shortValue] minor:[_minor shortValue] identifier:@"com.apple.AirLocate"];
+                CLBeaconRegion  *region = [[CLBeaconRegion alloc] initWithProximityUUID:_uuid major:[_major shortValue] minor:[_minor shortValue] identifier:@"com.proximitywiz.AirLocate"];
                 peripheralData = [region peripheralDataWithMeasuredPower:_power];
             }
             else if(_uuid && _major)
             {
-                CLBeaconRegion *region = [[CLBeaconRegion alloc] initWithProximityUUID:_uuid major:[_major shortValue]  identifier:@"com.apple.AirLocate"];
+                CLBeaconRegion *region = [[CLBeaconRegion alloc] initWithProximityUUID:_uuid major:[_major shortValue]  identifier:@"com.proximitywiz.AirLocate"];
                 peripheralData = [region peripheralDataWithMeasuredPower:_power];
             }
             else if(_uuid)
             {
-                CLBeaconRegion *region = [[CLBeaconRegion alloc] initWithProximityUUID:_uuid identifier:@"com.apple.AirLocate"];
+                CLBeaconRegion *region = [[CLBeaconRegion alloc] initWithProximityUUID:_uuid identifier:@"com.proximitywiz.AirLocate"];
                 peripheralData = [region peripheralDataWithMeasuredPower:_power];
             }
             
@@ -414,5 +418,34 @@
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
+
+/*
+#pragma mark - Location Manager Delegate functions
+
+- (void)locationManager:(CLLocationManager *)manager didDetermineState:(CLRegionState)state forRegion:(CLRegion *)region
+{
+  // A user can transition in or out of a region while the application is not running.
+  // When this happens CoreLocation will launch the application momentarily, call this delegate method
+  // and we will let the user know via a local notification.
+  UILocalNotification *notification = [[UILocalNotification alloc] init];
+  
+  if(state == CLRegionStateInside)
+  {
+    notification.alertBody = [NSString stringWithFormat:@"You're inside the region %@", region.identifier];
+  }
+  else if(state == CLRegionStateOutside)
+  {
+    notification.alertBody = [NSString stringWithFormat:@"You're outside the region %@", region.identifier];;
+  }
+  else
+  {
+    return;
+  }
+  
+  // If the application is in the foreground, it will get a callback to application:didReceiveLocalNotification:.
+  // If its not, iOS will display the notification to the user.
+  [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
+}
+ */
 
 @end
